@@ -16,18 +16,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'booster'`, () => {
+  it(`should have as title '🚀 angular-booster'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('booster');
+    expect(app.title).toEqual('🚀 angular-booster');
   });
 
-  it('should render title', () => {
+  it('should render title 🚀 angular-booster', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'booster app is running!',
+    expect(compiled.querySelector('nav .title-link')?.textContent).toContain(
+      '🚀 angular-booster',
     );
   });
 });

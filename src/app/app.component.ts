@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <header>
       <nav role="navigation">
         <h1>
-          <a [routerLink]="['/']">{{ title }}</a>
+          <a class="title-link" [routerLink]="['/']">{{ title }}</a>
         </h1>
         <ul>
           <li>
