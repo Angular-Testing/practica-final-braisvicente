@@ -3,39 +3,61 @@
 
 module.exports = function (config) {
   config.set({
-    basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    // 0 - Plugins
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
+      // require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-mocha-reporter'),
     ],
+
+    // 1 - Trigger
+    autoWatch: true,
+    restartOnFileChange: true,
+    singleRun: false,
+
+    // 2 - Build
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+
+    // 3 - Run
+    browsers: ['ChromeHeadless'],
+    port: 9876,
+
+    // 4 - Report
+    colors: true,
+    logLevel: config.LOG_INFO,
+    reporters: ['mocha'],
+
+    mochaReporter: {
+      showDiff: false,
+      ignoreSkipped: true,
+      output: 'autowatch',
+    },
+
     client: {
-      jasmine: {
-        // you can add configuration options for Jasmine here
-        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
-        // or set a specific seed with `seed: 4321`
-      },
+      jasmine: {},
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     jasmineHtmlReporter: {
       suppressAll: true, // removes the duplicated traces
     },
+
+    // 5 - Coverage
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-booster'),
+      dir: require('path').join(__dirname, './tests/output/coverage/angular-booster'),
       subdir: '.',
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
+      check: {
+        global: {
+          statements: 75,
+          branches: 75,
+          functions: 75,
+          lines: 75,
+        },
+      },
     },
-    reporters: ['progress', 'kjhtml'],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true,
   });
 };
