@@ -12,7 +12,7 @@ export function findDebugEl<T>(fixture: ComponentFixture<T>, selector: string): 
   return debugElement.nativeElement;
 }
 
-export function findNativeElValue<T>(fixture: ComponentFixture<T>, selector: string): any | null {
+export function findNativeElValue<T>(fixture: ComponentFixture<T>, selector: string): string | null {
   const nativeElement = fixture.debugElement.query(By.css(selector));
   return nativeElement.nativeElement.value;
 }
